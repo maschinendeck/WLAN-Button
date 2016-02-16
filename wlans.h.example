@@ -1,0 +1,3 @@
+WiFiMulti.addAP("SSID1", "Password 1");
+WiFiMulti.addAP("second to try", "second password to try");
+WiFiMulti.addAP("open");
