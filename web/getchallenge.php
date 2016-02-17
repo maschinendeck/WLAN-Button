@@ -10,4 +10,3 @@ $challenge = getRandomString();
 $db->insertChallenge($device, $challenge);
 
 echo $challenge;
-

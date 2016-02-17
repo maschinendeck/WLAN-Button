@@ -1,6 +1,6 @@
 <?php
-include("database.php");
 include("secret.php");
+include("database.php");
 $device = $_GET['device'];
 
 if(!$db->isValid($device))
@@ -28,9 +28,15 @@ if($db->isValidChallenge($device, $challenge)){
         $db->writeTelemetry($device, $key, $value);
     }
 
-//    echo "green";
-    echo "red";
+    $raumstatus = getRaumstatus();
+
+    if(setRaumstatus(!$raumstatus))
+        $raumstatus = !$raumstatus;
+
+    if($raumstatus)
+        echo "green";
+    else
+        echo "red";
 } else {
     die("invalid challenge");
 }
-
