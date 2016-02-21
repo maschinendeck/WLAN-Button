@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "$BUTTON" = wps -o "$BUTTON" = reset ]; then
+	case "$ACTION" in
+		released)
+			cd /usr/bin/raumstatus; lua raumstatus.lua
+			;;
+	esac
+fi
