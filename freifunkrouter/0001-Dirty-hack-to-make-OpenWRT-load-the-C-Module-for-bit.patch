@@ -1,0 +1,30 @@
+From 3e02e0b91763709522d8224d2248e2302e5777f4 Mon Sep 17 00:00:00 2001
+From: Ranlvor <ranlvor@starletp9.de>
+Date: Sun, 21 Feb 2016 15:48:25 +0100
+Subject: [PATCH] Dirty hack to make OpenWRT load the C-Module for bit instead
+ of the nixio bit
+
+---
+ lockbox/util/bit.lua | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/lockbox/util/bit.lua b/lockbox/util/bit.lua
+index 711081b..2bec509 100644
+--- a/lockbox/util/bit.lua
++++ b/lockbox/util/bit.lua
+@@ -1,7 +1,12 @@
+ local ok, e
++
++local tmp = package.path
++package.path = ""
+ if not ok then
+ 	ok, e = pcall(require, "bit") -- the LuaJIT one ?
+ end
++package.path = tmp
++
+ if not ok then
+ 	ok, e = pcall(require, "bit32") -- Lua 5.2
+ end
+-- 
+1.9.1
+
